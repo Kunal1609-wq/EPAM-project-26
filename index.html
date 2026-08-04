@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1> XYZ Bank</h1>
+    </div>
+
+<h2 id="welcomeMessage">Welcome Customer!</h2>  
+<div id="instructions"> 
+
+    <p>Follow the steps below to get a Diwali coupon:</p>
+    <ol>
+        <li>Enter your Customer ID in the text box.</li>
+        <li>Click on the Validate Customer button.</li>
+        <li>Click on the Register button to hide these instructions and apply for coupons.</li>
+    </ol>
+    <p id="Success"></p>
+
+    <label for="customerId">Customer ID:</label>
+    <input type="text" id="customerID" placeholder="Enter Customer ID">
+    <button id="validateBtn">Validate Customer</button>
+    <button id="registerBtn">Register</button>
+
+    <p id="message"></p> 
+</div>
+<div id="coupon" style="display: none;">
+        <h2>Congratulations! Your diwali coupon is DIWALI2026</h2>
+    </div>
+
+    <script>
+        let shown = false;
+        let heading = document.querySelector("#welcomeMessage")
+        heading.addEventListener("mouseover", function(){
+             if (!shown) {
+                alert("Welcome to XYZ Bank");
+                shown = true;
+            }
+});
+        let custID = document.querySelector("#customerID");
+        let validateButton = document.querySelector("#validateBtn");
+        let message = document.querySelector("#message");
+        let instruction = document.querySelector("#instructions")
+        let registrationButton = document.querySelector("#registerBtn")
+        let validCustomer = false;
+        let coupon = document.querySelector("#coupon")
+
+        validateButton.addEventListener("click",function(){
+        if(custID.value.includes("XYZ")){
+            message.innerText = "Customer is Valid"
+            validCustomer = true
+        }
+        else{
+            message.innerText = "Customer is not valid"
+            validCustomer = false;
+        }
+        })
+       
+        let success = document.querySelector("#Success");
+
+        registrationButton.addEventListener("click", function () {
+            if(validCustomer){
+                instruction.style.display = "none";
+                success.innerText = "Registration Successful! You can now apply for Diwali Coupons."
+                coupon.style.display = "block";
+        }
+
+        });
+
+    </script>
+</body>
+</html>
